@@ -26,7 +26,7 @@ async function compressImages() {
             withoutEnlargement: true,
             fit: "inside",
           })
-          .jpeg({ quality: 75 }) // Compresse avec une qualité de 75%
+          .jpeg({ quality: 35 }) // Compresse avec une qualité de 75%
           .toFile(outputPath);
 
         console.log(`Compressed ${file}`);
