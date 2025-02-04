@@ -41,6 +41,7 @@ const Navbar = () => {
             <NavLink to="/decouvrir">Nous découvrir</NavLink>
             <NavLink to="/actions">Nos actions</NavLink>
             <NavLink to="/centres">Nos Centres</NavLink>
+            <NavLink to="/actualite">Actualités</NavLink>
 
             {/* Bouton Nous soutenir amélioré */}
             <Link
@@ -119,6 +120,14 @@ const Navbar = () => {
             className=" px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
           >
             Nos Centres
+            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+          </Link>
+          <Link
+            to="/actualite"
+            onClick={handleLinkClick}
+            className="px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+          >
+            Actualités
             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
           <Link
