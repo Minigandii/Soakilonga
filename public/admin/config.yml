@@ -2,8 +2,18 @@ backend:
   name: git-gateway
   branch: main
 
+# Configuration des médias
 media_folder: "public/images/actualites"
 public_folder: "/images/actualites"
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "votre_cle_publique"
+
+# Paramètres généraux du CMS
+site_url: https://soakilonga.vercel.app
+display_url: https://soakilonga.vercel.app
+locale: "fr"
 
 collections:
   - name: "actualites"
