@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  Heart,
-  ArrowRight,
   Users,
   History,
   Target,
   Sparkles,
   Medal,
-  ArrowDown,
   Phone,
   Mail,
   MapPinned,
@@ -32,7 +29,7 @@ const NousDecouvrir = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="min-h-screen">

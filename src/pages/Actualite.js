@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 
 const Actualite = () => {
-  const [actualites, setActualites] = useState([
+  const [actualites] = useState([
     {
       title: "Distribution de repas dans le centre de Mahitsy",
       date: "2024-02-01",

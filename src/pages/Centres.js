@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  Heart,
-  ArrowRight,
-  Users,
-  History,
-  Target,
-  Sparkles,
-  Medal,
-  ArrowDown,
-  Phone,
-  Mail,
-  MapPinned,
-} from "lucide-react";
+import { Phone, Mail, MapPinned } from "lucide-react";
 import { AnimatedSection } from "../components/AnimatedSection";
 
 const Centres = () => {
@@ -65,7 +53,7 @@ const Centres = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="min-h-screen overflow-x-hidden">

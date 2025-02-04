@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-  ArrowRight,
   Heart,
-  Info,
-  MapPin,
-  Newspaper,
   Phone,
   Mail,
   MapPinned,
   Users,
-  Target,
   ExternalLink,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -36,7 +31,7 @@ const NousSoutenir = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="min-h-screen">

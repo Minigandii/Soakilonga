@@ -157,7 +157,7 @@ const Accueil = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="min-h-screen overflow-x-hidden">

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   Heart,
   ArrowRight,
-  CircleUser,
   GraduationCap,
   Dumbbell,
   Leaf,
@@ -72,7 +71,7 @@ const NosActions = () => {
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="min-h-screen">
