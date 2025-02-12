@@ -6,66 +6,34 @@ import { Newspaper } from "lucide-react";
 const Actualite = () => {
   const [actualites, setActualites] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fonction qui récupère les actualités directement depuis l'API Netlify CMS
+    // Fonction pour récupérer les données
     const fetchActualites = async () => {
       try {
-        // L'API Git Gateway de Netlify CMS est accessible via ce endpoint
-        const response = await fetch("/admin/config.yml");
-        if (!response.ok)
-          throw new Error("Erreur de chargement de la configuration");
+        // Le point d'entrée de l'API Git de Netlify
+        const repoUrl =
+          "https://api.github.com/repos/Minigandii/soakilonga/contents/content/actualites";
+        const response = await fetch(repoUrl);
+        const data = await response.json();
 
-        // En local, on peut utiliser un mock des données pour le développement
-        if (window.location.hostname === "localhost") {
-          const mockActualites = [
-            {
-              title: "ACTU 1",
-              date: "2025-02-04T22:15:47.835Z",
-              image: "/images/actualites/resume-lucky-strike.png",
-              description: "TEST1",
-              body: "TEST 1",
-            },
-          ];
-          setActualites(mockActualites);
-          setLoading(false);
-          return;
-        }
-
-        // En production, on utilise l'API Netlify Identity pour l'authentification
-        if (!window.netlifyIdentity) {
-          const script = document.createElement("script");
-          script.src =
-            "https://identity.netlify.com/v1/netlify-identity-widget.js";
-          script.async = true;
-          document.head.appendChild(script);
-        }
-
-        // Une fois authentifié, on peut accéder aux données
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              window.location.href = "/admin/";
-            });
-          }
-        });
-
-        const contentResponse = await fetch(
-          "/admin/collections/actualites/entries"
+        // Pour chaque fichier markdown, récupérer son contenu
+        const actus = await Promise.all(
+          data.map(async (file) => {
+            const contentResponse = await fetch(file.download_url);
+            const content = await contentResponse.text();
+            return parseMarkdown(content);
+          })
         );
-        if (!contentResponse.ok)
-          throw new Error("Erreur de chargement des actualités");
 
-        const data = await contentResponse.json();
-        const sortedActualites = data.sort(
+        // Trier par date décroissante
+        const sortedActus = actus.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
-        setActualites(sortedActualites);
+        setActualites(sortedActus);
         setLoading(false);
-      } catch (err) {
-        console.error("Erreur:", err);
-        setError("Une erreur est survenue lors du chargement des actualités.");
+      } catch (error) {
+        console.error("Erreur:", error);
         setLoading(false);
       }
     };
@@ -73,12 +41,32 @@ const Actualite = () => {
     fetchActualites();
   }, []);
 
-  // Rendu pendant le chargement
+  // Fonction pour parser le markdown
+  const parseMarkdown = (content) => {
+    const parts = content.split("---");
+    const frontMatter = parts[1];
+    const body = parts[2];
+
+    // Parser le frontmatter
+    const metadata = {};
+    frontMatter.split("\n").forEach((line) => {
+      const [key, ...values] = line.split(":");
+      if (key && values.length) {
+        metadata[key.trim()] = values.join(":").trim().replace(/"/g, "");
+      }
+    });
+
+    return {
+      ...metadata,
+      body: body.trim(),
+    };
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 pt-20">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex justify-center items-center min-h-[400px]">
+          <div className="flex justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
           </div>
         </div>
@@ -86,20 +74,6 @@ const Actualite = () => {
     );
   }
 
-  // Rendu en cas d'erreur
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50 pt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-red-600 min-h-[400px] flex items-center justify-center">
-            {error}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Rendu principal
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="h-20"></div>
@@ -154,7 +128,9 @@ const Actualite = () => {
                       {actualite.description}
                     </p>
                   )}
-                  <div className="prose max-w-none">{actualite.body}</div>
+                  <div className="prose max-w-none whitespace-pre-wrap">
+                    {actualite.body}
+                  </div>
                 </div>
               </article>
             ))}
