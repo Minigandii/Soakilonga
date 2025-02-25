@@ -2,9 +2,8 @@
 title: Journée à Ihazolava
 date: 2024-12-20T12:00:00.804Z
 image: /images/actualites/pxl_20241221_093256780.mp.jpg
-description: |-
-  Journée de distribution de nourriture et de vêtements
-  Sensibilisation à l'hygiène et distribution de brosses à dents et dentifrices
+description: Distribution de nourriture et de vêtements / Sensibilisation à
+  l'hygiène et distribution de brosses à dents et dentifrices
 ---
 Ihazolava est un village situé à 3h de route de Mahitsy. Depuis 2020, notre ONG intervient auprès des villageois qui sont dans l’extrême pauvreté. Nous nous déplaçons dans ce village au moins 4 fois dans l’année.
 
