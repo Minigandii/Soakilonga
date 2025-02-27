@@ -6,47 +6,19 @@ export const ActualitesProvider = ({ children }) => {
   const [actualites, setActualites] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const parseMarkdown = (content) => {
-    const parts = content.split("---");
-    const frontMatter = parts[1];
-    const body = parts[2];
-
-    const metadata = {};
-    frontMatter.split("\n").forEach((line) => {
-      const [key, ...values] = line.split(":");
-      if (key && values.length) {
-        metadata[key.trim()] = values.join(":").trim().replace(/"/g, "");
-      }
-    });
-
-    return {
-      ...metadata,
-      body: body.trim(),
-    };
-  };
-
   const fetchActualites = async () => {
     try {
-      const repoUrl =
-        "https://api.github.com/repos/Minigandii/soakilonga/contents/content/actualites";
-      const response = await fetch(repoUrl);
+      // Charger un fichier JSON généré lors du build
+      const response = await fetch("/data/actualites.json");
+      if (!response.ok) {
+        throw new Error("Impossible de charger les actualités");
+      }
       const data = await response.json();
-
-      const actus = await Promise.all(
-        data.map(async (file) => {
-          const contentResponse = await fetch(file.download_url);
-          const content = await contentResponse.text();
-          return parseMarkdown(content);
-        })
-      );
-
-      const sortedActus = actus.sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      );
-      setActualites(sortedActus);
+      setActualites(data);
       setLoading(false);
     } catch (error) {
       console.error("Erreur:", error);
+      setActualites([]);
       setLoading(false);
     }
   };
