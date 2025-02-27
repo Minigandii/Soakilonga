@@ -56,7 +56,7 @@ const Actualite = () => {
           <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-green-900/90 to-green-800/75 z-10" />
           {images.map((image, index) => (
             <img
-              key={image.src}
+              key={`${image.src}-${index}`}
               src={image.src}
               alt={image.alt}
               className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${

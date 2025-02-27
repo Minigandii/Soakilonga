@@ -85,7 +85,7 @@ const NosActions = () => {
           <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-green-900/90 to-green-800/75 z-10" />
           {images.map((image, index) => (
             <img
-              key={image.src}
+              key={`${image.src}-${index}`}
               src={image.src}
               alt={image.alt}
               className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -165,11 +165,11 @@ const NosActions = () => {
               </p>
             </div>
             <div className="relative h-[400px] overflow-hidden rounded-lg shadow-xl">
-              {images2.map((image, index) => (
+              {images2.map((image2, index) => (
                 <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
+                  key={`${image2.src}-${index}`}
+                  src={image2.src}
+                  alt={image2.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
@@ -185,11 +185,11 @@ const NosActions = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1">
-              {images3.map((image, index) => (
+              {images3.map((image3, index) => (
                 <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
+                  key={`${image3.src}-${index}`}
+                  src={image3.src}
+                  alt={image3.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
@@ -220,12 +220,10 @@ const NosActions = () => {
                 il est essentiel pour nous d’intervenir aussi sur ce secteur.
               </p>
               <p className="text-gray-700">
-                <p className="text-gray-700">
-                  Nous offrons également des formations professionnelles aux
-                  femmes (couture, broderie, vannerie, cuisine), afin de
-                  renforcer leur indépendance économique. Ces initiatives visent
-                  à améliorer le statut des femmes dans la société malgache.
-                </p>
+                Nous offrons également des formations professionnelles aux
+                femmes (couture, broderie, vannerie, cuisine), afin de renforcer
+                leur indépendance économique. Ces initiatives visent à améliorer
+                le statut des femmes dans la société malgache.
               </p>
             </div>
           </div>
@@ -263,11 +261,11 @@ const NosActions = () => {
               </p>
             </div>
             <div className="relative h-[400px] overflow-hidden rounded-lg shadow-xl">
-              {images4.map((image, index) => (
+              {images4.map((image4, index) => (
                 <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
+                  key={`${image4.src}-${index}`}
+                  src={image4.src}
+                  alt={image4.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
@@ -283,11 +281,11 @@ const NosActions = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1">
-              {images5.map((image, index) => (
+              {images5.map((image5, index) => (
                 <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
+                  key={`${image5.src}-${index}`}
+                  src={image5.src}
+                  alt={image5.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
@@ -359,11 +357,11 @@ const NosActions = () => {
               </p>
             </div>
             <div className="relative h-[400px] overflow-hidden rounded-lg shadow-xl">
-              {images6.map((image, index) => (
+              {images6.map((image6, index) => (
                 <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
+                  key={`${image6.src}-${index}`}
+                  src={image6.src}
+                  alt={image6.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}

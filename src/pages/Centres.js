@@ -65,7 +65,7 @@ const Centres = () => {
           <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-green-900/90 to-green-800/75 z-10" />
           {images.map((image, index) => (
             <img
-              key={image.src}
+              key={`${image.src}-${index}`}
               src={image.src}
               alt={image.alt}
               className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -144,7 +144,7 @@ const Centres = () => {
             >
               {images2.map((image2, index) => (
                 <img
-                  key={image2.src}
+                  key={`${image2.src}-${index}`}
                   src={image2.src}
                   alt={image2.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -167,11 +167,11 @@ const Centres = () => {
               direction="left"
               className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
             >
-              {images3.map((image, index) => (
+              {images3.map((image3, index) => (
                 <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
+                  key={`${image3.src}-${index}`}
+                  src={image3.src}
+                  alt={image3.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
@@ -254,11 +254,11 @@ const Centres = () => {
               direction="right"
               className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl order-1 md:order-2"
             >
-              {images4.map((image2, index) => (
+              {images4.map((image4, index) => (
                 <img
-                  key={image2.src}
-                  src={image2.src}
-                  alt={image2.alt}
+                  key={`${image4.src}-${index}`}
+                  src={image4.src}
+                  alt={image4.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}

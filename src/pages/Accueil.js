@@ -170,7 +170,7 @@ const Accueil = () => {
           <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-green-900/90 to-green-800/75 z-10" />
           {images.map((image, index) => (
             <img
-              key={image.src}
+              key={`${image.src}-${index}`}
               src={image.src}
               alt={image.alt}
               className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -225,7 +225,7 @@ const Accueil = () => {
             <AnimatedSection className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1">
               {images2.map((image2, index) => (
                 <img
-                  key={image2.src}
+                  key={`${image2.src}-${index}`}
                   src={image2.src}
                   alt={image2.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -300,7 +300,7 @@ const Accueil = () => {
             >
               {images3.map((image3, index) => (
                 <img
-                  key={image3.src}
+                  key={`${image3.src}-${index}`}
                   src={image3.src}
                   alt={image3.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -323,7 +323,7 @@ const Accueil = () => {
             >
               {images4.map((image4, index) => (
                 <img
-                  key={image4.src}
+                  key={`${image4.src}-${index}`}
                   src={image4.src}
                   alt={image4.alt}
                   className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
