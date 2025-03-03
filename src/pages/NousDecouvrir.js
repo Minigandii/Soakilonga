@@ -424,7 +424,7 @@ const NousDecouvrir = () => {
 
       {/* Section Équipe */}
       <section className="py-8 sm:py-16 md:py-24 bg-green-50">
-        <div className="container mx-auto px-4 w-full">
+        <div className="container mx-auto px-4">
           <AnimatedSection direction="up" className="text-center mb-8 md:mb-12">
             <div className="flex items-center justify-center gap-2 text-green-600 mb-3 md:mb-4">
               <Medal className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -443,10 +443,8 @@ const NousDecouvrir = () => {
             </p>
           </AnimatedSection>
 
-          {/* Conteneur pour TeamMembers avec largeur complète */}
-          <div className="w-full">
-            <TeamMembers />
-          </div>
+          {/* Composant TeamMembers - utilisez simplement le composant directement */}
+          <TeamMembers />
         </div>
       </section>
 
