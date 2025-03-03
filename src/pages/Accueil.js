@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   Heart,
@@ -10,7 +10,11 @@ import {
   Mail,
   MapPinned,
   Target,
+  Calendar,
 } from "lucide-react";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import { useActualites } from "../context/ActualitesContext";
 
 // Hook personnalisé pour détecter la direction du scroll
 const useScrollDirection = () => {
@@ -111,6 +115,45 @@ const AnimatedSection = ({ children, className = "", direction = "up" }) => {
   );
 };
 
+const ActualiteCard = ({ actualite, onClick }) => {
+  const formattedDate = actualite.date
+    ? format(new Date(actualite.date), "d MMMM yyyy", { locale: fr })
+    : "";
+
+  return (
+    <div
+      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer h-full flex flex-col"
+      onClick={onClick}
+    >
+      <div className="relative h-48">
+        <img
+          src={actualite.image || `/images/actualite-default.jpg`}
+          alt={actualite.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="p-6 flex flex-col flex-grow">
+        {formattedDate && (
+          <div className="flex items-center gap-2 text-green-600 mb-3">
+            <Calendar className="w-4 h-4 flex-shrink-0" />
+            <span className="text-sm">{formattedDate}</span>
+          </div>
+        )}
+        <h3 className="font-bold text-xl mb-2 text-green-800 line-clamp-2">
+          {actualite.title}
+        </h3>
+        <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
+          {actualite.description || ""}
+        </p>
+        <div className="text-green-600 font-semibold hover:text-green-700 transition-colors flex items-center gap-2 mt-auto">
+          Lire la suite
+          <ArrowRight className="w-4 h-4" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Accueil = () => {
   const images = [
     { src: "/images/Accueil1.jpg", alt: "Madagascar 1" },
@@ -145,6 +188,10 @@ const Accueil = () => {
     { src: "/images/NosCentres6.jpg", alt: "NosCentres6" },
   ];
 
+  // Récupérer les actualités depuis le contexte
+  const { actualites, loading } = useActualites();
+  const navigate = useNavigate();
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -159,11 +206,16 @@ const Accueil = () => {
     return () => clearInterval(timer);
   }, [images.length]);
 
+  // Fonction pour naviguer vers une actualité spécifique
+  const navigateToActualite = (index) => {
+    // Accéder à la page d'actualités avec un hash pour cibler l'actualité spécifique
+    navigate(`/actualite#actu-${index}`);
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Espaceur pour navbar fixe */}
       <div className="h-20"></div>
-
       <div className="relative h-[85vh] md:h-[90vh] bg-green-900">
         {/* Fond et overlay */}
         <div className="absolute inset-0">
@@ -217,7 +269,6 @@ const Accueil = () => {
           </div>
         </div>
       </div>
-
       {/* Section Nous découvrir avec animation */}
       <section className="py-16 md:py-24 bg-green-50">
         <div className="container mx-auto px-4">
@@ -264,7 +315,6 @@ const Accueil = () => {
           </div>
         </div>
       </section>
-
       {/* Section Nos actions avec animation */}
       <section className="py-16 md:py-24 bg-green-900 text-white">
         <div className="container mx-auto px-4">
@@ -312,7 +362,6 @@ const Accueil = () => {
           </div>
         </div>
       </section>
-
       {/* Section Nos centres */}
       <section className="py-16 md:py-24 bg-green-50">
         <div className="container mx-auto px-4">
@@ -361,7 +410,7 @@ const Accueil = () => {
         </div>
       </section>
 
-      {/* Section Actualités avec animation */}
+      {/* Section Actualités avec animation - Avec cartes uniformes */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <AnimatedSection direction="up" className="text-center mb-12">
@@ -377,40 +426,45 @@ const Accueil = () => {
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <AnimatedSection
-                key={i}
-                direction={i === 1 ? "left" : i === 2 ? "up" : "right"}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              >
-                <div className="relative h-48">
-                  <img
-                    src={`/images/actualite-${i}.jpg`}
-                    alt={`Actualité ${i}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-xl mb-2 text-green-800">
-                    Titre de l'actualité {i}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Description courte de l'actualité...
-                  </p>
-                  <Link
-                    to={`/actualites/${i}`}
-                    className="text-green-600 font-semibold hover:text-green-700 transition-colors flex items-center gap-2"
+            {loading ? (
+              <div className="col-span-3 text-center py-10">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500 mx-auto"></div>
+              </div>
+            ) : actualites.length === 0 ? (
+              <div className="col-span-3 text-center py-10 text-gray-600">
+                Aucune actualité disponible pour le moment.
+              </div>
+            ) : (
+              actualites
+                .slice(0, 3) // Prendre les 3 premières actualités (les plus récentes)
+                .map((actualite, index) => (
+                  <AnimatedSection
+                    key={index}
+                    direction={
+                      index === 0 ? "left" : index === 1 ? "up" : "right"
+                    }
+                    className="h-full"
                   >
-                    Lire la suite
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </AnimatedSection>
-            ))}
+                    <ActualiteCard
+                      actualite={actualite}
+                      onClick={() => navigateToActualite(index)}
+                    />
+                  </AnimatedSection>
+                ))
+            )}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              to="/actualite"
+              className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-500 transition-colors"
+            >
+              Voir toutes les actualités
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
-
       {/* Footer avec animation */}
       <footer className="bg-green-900 text-white">
         <div className="container mx-auto px-6 py-12">

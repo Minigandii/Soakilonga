@@ -9,7 +9,10 @@ import {
   Phone,
   Mail,
   MapPinned,
+  Handshake,
 } from "lucide-react";
+import { AnimatedSection } from "../components/AnimatedSection";
+import TeamMembers from "../components/TeamMembers";
 
 const NousDecouvrir = () => {
   const images = [
@@ -19,9 +22,11 @@ const NousDecouvrir = () => {
     { src: "/images/NousDecouvrir4.jpg", alt: "Madagascar 4" },
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Effet pour le défilement automatique
   useEffect(() => {
+    setIsVisible(true);
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -32,14 +37,14 @@ const NousDecouvrir = () => {
   }, [images.length]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Espaceur pour navbar fixe */}
       <div className="h-20"></div>
 
       {/* Hero Section */}
       <div className="min-h-screen">
         <div className="relative h-[85vh] md:h-[90vh] bg-green-900">
-          {/* Fond et overlay avec carousel - reste identique */}
+          {/* Fond et overlay avec carousel */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-green-900/90 to-green-800/75 z-10" />
             {images.map((image, index) => (
@@ -54,10 +59,21 @@ const NousDecouvrir = () => {
             ))}
           </div>
 
-          {/* Contenu centré ajusté */}
+          {/* Contenu centré ajusté avec animation */}
           <div className="relative z-20 h-full flex items-center">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto text-center">
+              <div
+                className={`max-w-4xl mx-auto text-center transform transition-all duration-1000 ${
+                  isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                }`}
+              >
+                <div className="flex justify-center mb-8">
+                  <div className="bg-white/10 backdrop-blur-sm p-6 rounded-full">
+                    <Handshake className="w-12 h-12 text-white/90 animate-pulse" />
+                  </div>
+                </div>
                 <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white mb-4 md:mb-8">
                   Nous découvrir
                 </h1>
@@ -77,17 +93,22 @@ const NousDecouvrir = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             {/* En-tête de section */}
-            <div className="flex items-center gap-3 mb-8 md:mb-12">
-              <div className="bg-green-100 rounded-full p-3">
-                <Users className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+            <AnimatedSection direction="up">
+              <div className="flex items-center gap-3 mb-8 md:mb-12">
+                <div className="bg-green-100 rounded-full p-3">
+                  <Users className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
+                  Qui sommes-nous ?
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
-                Qui sommes-nous ?
-              </h2>
-            </div>
+            </AnimatedSection>
 
             <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-              <div className="col-span-full md:col-span-2 space-y-4 md:space-y-6">
+              <AnimatedSection
+                direction="left"
+                className="col-span-full md:col-span-2 space-y-4 md:space-y-6"
+              >
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                   Depuis sa création en 2009, Soakilonga est à l'avant-garde de
                   la lutte contre la malnutrition à Madagascar. À travers des
@@ -104,10 +125,11 @@ const NousDecouvrir = () => {
                   Il s'agit d'une approche globale pour offrir aux familles des
                   opportunités de croissance et de réussite.
                 </p>
-              </div>
+              </AnimatedSection>
 
-              {/* Stats - déjà bien configuré avec hidden md:block */}
-              <div
+              {/* Stats avec animation */}
+              <AnimatedSection
+                direction="right"
                 className="hidden md:block bg-green-50 p-8 rounded-2xl space-y-8"
                 style={{ transform: "translateY(-2rem)" }}
               >
@@ -129,7 +151,7 @@ const NousDecouvrir = () => {
                   </div>
                   <div className="text-gray-600">Enfants accompagnés</div>
                 </div>
-              </div>
+              </AnimatedSection>
             </div>
           </div>
         </div>
@@ -140,17 +162,19 @@ const NousDecouvrir = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             {/* En-tête */}
-            <div className="flex items-center gap-3 mb-6 md:mb-8">
-              <div className="bg-green-200 rounded-full p-3">
-                <History className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+            <AnimatedSection direction="up">
+              <div className="flex items-center gap-3 mb-6 md:mb-8">
+                <div className="bg-green-200 rounded-full p-3">
+                  <History className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
+                  Notre histoire
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
-                Notre histoire
-              </h2>
-            </div>
+            </AnimatedSection>
 
             {/* Texte d'introduction */}
-            <div className="mb-8 md:mb-16">
+            <AnimatedSection direction="up" className="mb-8 md:mb-16">
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4">
                 L'histoire de Soakilonga commence en 2008 avec une première
                 distribution de nourriture dans les communautés rurales touchées
@@ -172,10 +196,10 @@ const NousDecouvrir = () => {
                 d'éducation et de réhabilitation, où enfants et familles
                 trouvent espoir et soutien.
               </p>
-            </div>
+            </AnimatedSection>
 
-            {/* Timeline */}
-            <div className="hidden md:block relative">
+            {/* Timeline avec animations */}
+            <AnimatedSection className="hidden md:block relative">
               {/* Ligne verticale */}
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-green-200"></div>
 
@@ -235,10 +259,13 @@ const NousDecouvrir = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
 
             {/* Citation */}
-            <div className="relative max-w-3xl mx-auto text-center py-6 md:py-8">
+            <AnimatedSection
+              direction="up"
+              className="relative max-w-3xl mx-auto text-center py-6 md:py-8"
+            >
               <div className="text-4xl md:text-5xl text-green-300 absolute left-4 top-0">
                 "
               </div>
@@ -253,7 +280,7 @@ const NousDecouvrir = () => {
                 demain, pour que chacun puisse s'épanouir et se développer dans
                 les conditions dignes qu'il mérite.
               </p>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -263,16 +290,21 @@ const NousDecouvrir = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             {/* En-tête de section */}
-            <div className="flex items-center gap-3 mb-8 md:mb-12">
-              <div className="bg-green-100 rounded-full p-3">
-                <Target className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+            <AnimatedSection direction="up">
+              <div className="flex items-center gap-3 mb-8 md:mb-12">
+                <div className="bg-green-100 rounded-full p-3">
+                  <Target className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
+                  Notre mission
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800">
-                Notre mission
-              </h2>
-            </div>
+            </AnimatedSection>
 
-            <div className="md:col-span-2 space-y-4 md:space-y-6">
+            <AnimatedSection
+              direction="up"
+              className="md:col-span-2 space-y-4 md:space-y-6"
+            >
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                 Soakilonga a été fondée avec une mission simple mais essentielle
                 : enrayer la malnutrition infantile à Madagascar. Le pays étant
@@ -297,7 +329,7 @@ const NousDecouvrir = () => {
                 chances et opportunités : les familles aisées comme les plus
                 démunies, les hommes comme les femmes.
               </p>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -306,73 +338,85 @@ const NousDecouvrir = () => {
       <section className="py-8 sm:py-16 md:py-24 bg-green-800">
         <div className="container mx-auto px-4">
           {/* En-tête avec icône */}
-          <div className="flex items-center justify-center gap-3 mb-8 md:mb-16">
-            <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-green-200" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-100">
-              Nos valeurs
-            </h2>
-          </div>
+          <AnimatedSection direction="up">
+            <div className="flex items-center justify-center gap-3 mb-8 md:mb-16">
+              <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-green-200" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-100">
+                Nos valeurs
+              </h2>
+            </div>
+          </AnimatedSection>
 
           {/* Grille des valeurs */}
           <div className="max-w-6xl mx-auto">
             {/* Première rangée - 3 valeurs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
               {/* Égalité */}
-              <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all">
-                <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
-                  Égalité
-                </h3>
-                <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
-                  Chaque être humain a le droit fondamental de vivre en toute
-                  dignité.
-                </p>
-              </div>
+              <AnimatedSection direction="left">
+                <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all h-full">
+                  <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
+                    Égalité
+                  </h3>
+                  <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
+                    Chaque être humain a le droit fondamental de vivre en toute
+                    dignité.
+                  </p>
+                </div>
+              </AnimatedSection>
 
               {/* Solidarité */}
-              <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all">
-                <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
-                  Solidarité
-                </h3>
-                <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
-                  Travailler main dans la main pour éradiquer la pauvreté.
-                </p>
-              </div>
+              <AnimatedSection direction="up">
+                <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all h-full">
+                  <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
+                    Solidarité
+                  </h3>
+                  <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
+                    Travailler main dans la main pour éradiquer la pauvreté.
+                  </p>
+                </div>
+              </AnimatedSection>
 
               {/* Sécurité */}
-              <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all">
-                <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
-                  Sécurité
-                </h3>
-                <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
-                  Des lieux ressourçants qui garantissent le développement
-                  personnel.
-                </p>
-              </div>
+              <AnimatedSection direction="right">
+                <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all h-full">
+                  <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
+                    Sécurité
+                  </h3>
+                  <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
+                    Des lieux ressourçants qui garantissent le développement
+                    personnel.
+                  </p>
+                </div>
+              </AnimatedSection>
             </div>
 
             {/* Deuxième rangée - 2 valeurs centrées */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 md:w-2/3 mx-auto">
               {/* Opportunité */}
-              <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all">
-                <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
-                  Opportunité
-                </h3>
-                <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
-                  Nous offrons à tous des opportunités d'épanouissement et
-                  d'autonomie.
-                </p>
-              </div>
+              <AnimatedSection direction="left">
+                <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all h-full">
+                  <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
+                    Opportunité
+                  </h3>
+                  <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
+                    Nous offrons à tous des opportunités d'épanouissement et
+                    d'autonomie.
+                  </p>
+                </div>
+              </AnimatedSection>
 
               {/* Proximité */}
-              <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all">
-                <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
-                  Proximité
-                </h3>
-                <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
-                  Nos actions sont au plus près de la population, jusque dans
-                  les villages reculés.
-                </p>
-              </div>
+              <AnimatedSection direction="right">
+                <div className="bg-green-700/30 backdrop-blur p-4 md:p-6 rounded-lg hover:bg-green-700/40 transition-all h-full">
+                  <h3 className="text-lg sm:text-xl font-bold text-green-100 mb-2 md:mb-3">
+                    Proximité
+                  </h3>
+                  <p className="text-sm sm:text-base text-green-100/90 leading-relaxed">
+                    Nos actions sont au plus près de la population, jusque dans
+                    les villages reculés.
+                  </p>
+                </div>
+              </AnimatedSection>
             </div>
           </div>
         </div>
@@ -380,8 +424,8 @@ const NousDecouvrir = () => {
 
       {/* Section Équipe */}
       <section className="py-8 sm:py-16 md:py-24 bg-green-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-12">
+        <div className="container mx-auto px-4 w-full">
+          <AnimatedSection direction="up" className="text-center mb-8 md:mb-12">
             <div className="flex items-center justify-center gap-2 text-green-600 mb-3 md:mb-4">
               <Medal className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="uppercase tracking-wider text-xs sm:text-sm font-semibold">
@@ -397,46 +441,11 @@ const NousDecouvrir = () => {
               sage-femmes et éducateurs, qui veillent quotidiennement au
               bien-être des enfants et des familles.
             </p>
-          </div>
+          </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            {[
-              {
-                name: "Dr. Josette Rakotohery",
-                role: "Fondatrice",
-              },
-              {
-                name: "Lolo",
-                role: "Responsable centre de Tsarazaza",
-              },
-              {
-                name: "Lolo",
-                role: "Responsable centre de Tsarazaza",
-              },
-              {
-                name: "Lolo",
-                role: "Responsable centre de Tsarazaza",
-              },
-            ].map((member, index) => (
-              <div
-                key={index}
-                className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 rounded-full overflow-hidden">
-                  <img
-                    src="/images/Lolo.jpg"
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-green-800 text-center mb-1 sm:mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 text-center">
-                  {member.role}
-                </p>
-              </div>
-            ))}
+          {/* Conteneur pour TeamMembers avec largeur complète */}
+          <div className="w-full">
+            <TeamMembers />
           </div>
         </div>
       </section>
@@ -473,10 +482,18 @@ const NousDecouvrir = () => {
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <li>
                   <Link
-                    to="/missions"
+                    to="/decouvrir"
                     className="hover:text-green-300 transition-colors"
                   >
-                    Nos missions
+                    Nous découvrir
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/actions"
+                    className="hover:text-green-300 transition-colors"
+                  >
+                    Nos actions
                   </Link>
                 </li>
                 <li>
@@ -489,18 +506,10 @@ const NousDecouvrir = () => {
                 </li>
                 <li>
                   <Link
-                    to="/benevolat"
+                    to="/soutenir"
                     className="hover:text-green-300 transition-colors"
                   >
-                    Devenir bénévole
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/dons"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Faire un don
+                    Nous soutenir
                   </Link>
                 </li>
               </ul>

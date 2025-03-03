@@ -11,6 +11,7 @@ import Centres from "./pages/Centres";
 import Navbar from "./components/Navbar";
 import { ActualitesProvider, useActualites } from "./context/ActualitesContext";
 import { ImagesProvider, useImages } from "./context/ImagesContext";
+import { TeamProvider } from "./context/TeamContext"; // Import du nouveau context
 import "./tailwind.css";
 
 function LoadingScreen() {
@@ -74,7 +75,9 @@ function App() {
     <Router>
       <ImagesProvider>
         <ActualitesProvider>
-          <AppContent />
+          <TeamProvider>
+            <AppContent />
+          </TeamProvider>
         </ActualitesProvider>
       </ImagesProvider>
     </Router>

@@ -23,3 +23,38 @@ collections:
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "team"
+    label: "Équipe"
+    folder: "content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Rôle", name: "role", widget: "string" }
+      - {
+          label: "Centre",
+          name: "center",
+          widget: "select",
+          options:
+            [
+              { label: "Fondateurs", value: "fondateurs" },
+              { label: "Mahitsy", value: "mahitsy" },
+              { label: "Tsarazaza", value: "tsarazaza" },
+              { label: "Ihosy", value: "ihosy" },
+            ],
+        }
+      - { label: "Photo", name: "photo", widget: "image" }
+      - {
+          label: "Ordre d'affichage",
+          name: "order",
+          widget: "number",
+          value_type: "int",
+          min: 1,
+        }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          required: false,
+        }
