@@ -1,7 +1,7 @@
 ---
-name: Clement
-role: Role de Test
+name: Mirindra
+role: Responsable de centre
 center: mahitsy
-photo: /images/actualites/vinyl-883199_1280.png
+photo: /images/actualites/mirindra-mahitsy-responsable-du-centre.jpg
 order: 1
 ---
