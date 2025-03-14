@@ -1,7 +1,7 @@
 ---
-name: Gandillon
-role: Test Role
-center: tsarazaza
-photo: /images/actualites/capture001.png
+name: Mme Fanza
+role: Responsable couture et nutrition
+center: ihosy
+photo: /images/actualites/mme-fanza-ihosy-couturière-et-responsable-nutrition.jpg
 order: 1
 ---
