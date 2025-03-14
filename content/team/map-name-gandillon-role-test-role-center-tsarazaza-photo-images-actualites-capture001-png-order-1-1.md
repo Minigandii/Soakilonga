@@ -1,7 +1,7 @@
 ---
-name: Gandillon
-role: Test Role
-center: tsarazaza
-photo: /images/actualites/capture001.png
+name: Blandine
+role: Responsable agriculture
+center: mahitsy
+photo: /images/actualites/mme-blandine-mahitsy-responsable-potager.jpg
 order: 1
 ---
