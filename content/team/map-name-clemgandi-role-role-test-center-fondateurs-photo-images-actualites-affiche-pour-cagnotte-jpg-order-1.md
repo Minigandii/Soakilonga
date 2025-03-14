@@ -1,7 +1,7 @@
 ---
-name: ClemGandi
-role: "Role Test "
-center: fondateurs
-photo: /images/actualites/affiche-pour-cagnotte-.jpg
+name: Tiana
+role: Responsable agriculture et cuisine
+center: ihosy
+photo: /images/actualites/m.tiny-ihosy-responsable-ptager-cuisine-et-sécurité-.jpg
 order: 1
 ---
