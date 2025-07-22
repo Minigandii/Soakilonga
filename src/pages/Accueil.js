@@ -6,15 +6,13 @@ import {
   Info,
   MapPin,
   Newspaper,
-  Phone,
-  Mail,
-  MapPinned,
   Target,
   Calendar,
 } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { useActualites } from "../context/ActualitesContext";
+import Footer from "../components/Footer";
 
 // Hook personnalisé pour détecter la direction du scroll
 const useScrollDirection = () => {
@@ -216,13 +214,14 @@ const Accueil = () => {
     <div className="min-h-screen overflow-x-hidden">
       {/* Espaceur pour navbar fixe */}
       <div className="h-20"></div>
+      {/* Hero Section avec texte et bouton centrés */}
       <div className="relative h-[85vh] md:h-[90vh] bg-green-900">
         {/* Fond et overlay */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-green-900/90 to-green-800/75 z-10" />
           {images.map((image, index) => (
             <img
-              key={`${image.src}-${index}`}
+              key={image.src}
               src={image.src}
               alt={image.alt}
               className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
@@ -233,10 +232,10 @@ const Accueil = () => {
         </div>
 
         {/* Contenu centré avec animations */}
-        <div className="relative z-20 flex items-center h-full">
+        <div className="relative z-20 flex items-center justify-center h-full">
           <div className="container mx-auto px-4">
             <div
-              className={`max-w-3xl transform transition-all duration-1000 ${
+              className={`max-w-3xl mx-auto text-center transform transition-all duration-1000 ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
@@ -250,10 +249,10 @@ const Accueil = () => {
                 le développement communautaire à travers des projets concrets et
                 durables.
               </p>
-              <div className="mt-6">
-                <Link to="/soutenir" className="block sm:inline-block">
+              <div className="mt-6 flex justify-center">
+                <Link to="/soutenir">
                   <button
-                    className="w-full sm:w-auto bg-green-500 hover:bg-green-400 
+                    className="bg-green-500 hover:bg-green-400 
                        text-white px-8 sm:px-12 py-4 sm:py-6 rounded-full 
                        text-base sm:text-xl
                        flex items-center justify-center gap-3 
@@ -465,79 +464,8 @@ const Accueil = () => {
           </div>
         </div>
       </section>
-      {/* Footer avec animation */}
-      <footer className="bg-green-900 text-white">
-        <div className="container mx-auto px-6 py-12">
-          <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold mb-4">Contact</h3>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span>+261 34 12 345 67</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <a
-                  href="mailto:contact@soakilonga.org"
-                  className="hover:text-green-300 transition-colors"
-                >
-                  contact@soakilonga.org
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPinned className="w-4 h-4" />
-                <span>Antananarivo, Madagascar</span>
-              </div>
-            </div>
-
-            {/* Liens rapides */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold mb-4">Liens rapides</h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <li>
-                  <Link
-                    to="/missions"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Nos missions
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/centres"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Nos centres
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/benevolat"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Devenir bénévole
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/dons"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Faire un don
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </AnimatedSection>
-
-          <div className="border-t border-white/20 mt-12 pt-8 text-center">
-            <p className="text-sm">
-              © {new Date().getFullYear()} Soakilonga. Tous droits réservés.
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

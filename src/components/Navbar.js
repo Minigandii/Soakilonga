@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart, ArrowRight } from "lucide-react"; // Ajout de ArrowRight ici
+import { Heart, ArrowRight, Handshake } from "lucide-react"; // Ajout de Handshake pour l'icône des partenaires
 
 const NavLink = ({ to, children }) => (
   <Link
@@ -42,6 +42,7 @@ const Navbar = () => {
             <NavLink to="/actions">Nos actions</NavLink>
             <NavLink to="/centres">Nos Centres</NavLink>
             <NavLink to="/actualite">Actualités</NavLink>
+            <NavLink to="/partenaires">Partenaires</NavLink>
 
             {/* Bouton Nous soutenir amélioré */}
             <Link
@@ -94,14 +95,14 @@ const Navbar = () => {
       {/* Mobile Menu avec animations améliorées */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         <div className="bg-white shadow-lg rounded-b-lg">
           <Link
             to="/decouvrir"
             onClick={handleLinkClick}
-            className=" px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
           >
             Nous découvrir
             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -109,7 +110,7 @@ const Navbar = () => {
           <Link
             to="/actions"
             onClick={handleLinkClick}
-            className=" px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
           >
             Nos actions
             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -117,7 +118,7 @@ const Navbar = () => {
           <Link
             to="/centres"
             onClick={handleLinkClick}
-            className=" px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
           >
             Nos Centres
             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -125,15 +126,23 @@ const Navbar = () => {
           <Link
             to="/actualite"
             onClick={handleLinkClick}
-            className="px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
           >
             Actualités
             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
           <Link
+            to="/partenaires"
+            onClick={handleLinkClick}
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+          >
+            Partenaires
+            <Handshake className="w-4 h-4 ml-1" />
+          </Link>
+          <Link
             to="/soutenir"
             onClick={handleLinkClick}
-            className=" px-6 py-3 text-green-600 hover:bg-green-50 hover:text-green-800 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-600 hover:bg-green-50 hover:text-green-800 transition-colors flex items-center gap-2"
           >
             Nous soutenir
             <Heart className="w-4 h-4" />

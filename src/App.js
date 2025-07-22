@@ -6,12 +6,13 @@ import NousDecouvrir from "./pages/NousDecouvrir";
 import NosActions from "./pages/NosActions";
 import Actualite from "./pages/Actualite";
 import NousSoutenir from "./pages/NousSoutenir";
+import NosPartenaires from "./pages/NosPartenaires";
 import Contact from "./pages/Contact";
 import Centres from "./pages/Centres";
 import Navbar from "./components/Navbar";
 import { ActualitesProvider, useActualites } from "./context/ActualitesContext";
 import { ImagesProvider, useImages } from "./context/ImagesContext";
-import { TeamProvider } from "./context/TeamContext"; // Import du nouveau context
+import { TeamProvider } from "./context/TeamContext";
 import "./tailwind.css";
 
 function LoadingScreen() {
@@ -19,7 +20,6 @@ function LoadingScreen() {
     <div className="fixed inset-0 bg-green-900 z-50 flex items-center justify-center">
       <div className="text-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white mb-4"></div>
-        <p className="text-white text-lg">Chargement des ressources...</p>
       </div>
     </div>
   );
@@ -34,20 +34,22 @@ function ScrollToTop() {
 }
 
 function AppContent() {
-  const { fetchActualites } = useActualites();
+  // Nous n'avons plus besoin d'appeler fetchActualites explicitement,
+  // car il est maintenant appelé automatiquement dans le contexte
+  const { loading: actualitesLoading } = useActualites();
   const { preloadAllImages, loading: imagesLoading } = useImages();
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
     const initializeApp = async () => {
-      await Promise.all([fetchActualites(), preloadAllImages()]);
+      await preloadAllImages();
       setInitialLoading(false);
     };
 
     initializeApp();
-  }, [fetchActualites, preloadAllImages]);
+  }, [preloadAllImages]);
 
-  if (initialLoading || imagesLoading) {
+  if (initialLoading || imagesLoading || actualitesLoading) {
     return <LoadingScreen />;
   }
 
@@ -63,6 +65,7 @@ function AppContent() {
           <Route path="/centres" element={<Centres />} />
           <Route path="/actualite" element={<Actualite />} />
           <Route path="/soutenir" element={<NousSoutenir />} />
+          <Route path="/partenaires" element={<NosPartenaires />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>

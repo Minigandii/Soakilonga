@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import {
-  Newspaper,
-  Calendar,
-  ArrowUp,
-  Phone,
-  Mail,
-  MapPinned,
-} from "lucide-react";
+import { Newspaper, Calendar, ArrowUp } from "lucide-react";
 import { useActualites } from "../context/ActualitesContext";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { AnimatedSection } from "../components/AnimatedSection";
+import Footer from "../components/Footer";
 
 const Actualite = () => {
   const { actualites, loading } = useActualites();
@@ -250,78 +244,7 @@ const Actualite = () => {
       )}
 
       {/* Footer */}
-      <footer className="bg-green-900 text-white">
-        <div className="container mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold mb-4">Contact</h3>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span>+261 34 12 345 67</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <a
-                  href="mailto:contact@soakilonga.org"
-                  className="hover:text-green-300 transition-colors"
-                >
-                  contact@soakilonga.org
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPinned className="w-4 h-4" />
-                <span>Antananarivo, Madagascar</span>
-              </div>
-            </div>
-
-            {/* Liens rapides */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold mb-4">Liens rapides</h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <li>
-                  <Link
-                    to="/decouvrir"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Nous découvrir
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/actions"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Nos actions
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/centres"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Nos centres
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/soutenir"
-                    className="hover:text-green-300 transition-colors"
-                  >
-                    Nous soutenir
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/20 mt-12 pt-8 text-center">
-            <p className="text-sm">
-              © {new Date().getFullYear()} Soakilonga. Tous droits réservés.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
