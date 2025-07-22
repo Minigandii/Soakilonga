@@ -1,7 +1,7 @@
 ---
-name: ClemGandi
-role: "Role Test "
-center: fondateurs
-photo: /images/actualites/affiche-pour-cagnotte-.jpg
+name: Charline
+role: Sage femme
+center: tsarazaza
+photo: /images/actualites/charline-tsarazaza-sage-femme-.jpg
 order: 1
 ---

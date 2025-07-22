@@ -1,7 +1,7 @@
 ---
-name: Clement
-role: Role de Test
-center: mahitsy
-photo: /images/actualites/vinyl-883199_1280.png
+name: Lolo
+role: Responsable de centre
+center: tsarazaza
+photo: /images/actualites/lolo-tsarazaza-responsable-de-centre-.jpg
 order: 1
 ---

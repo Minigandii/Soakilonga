@@ -1,7 +1,7 @@
 ---
 title: Des volontaires pour 1 an
 date: 2024-04-20T12:45:07.492Z
-image: /images/actualites/pxl_20240421_114353265.jpg
+image: /images/actualites/pxl_20240511_081413996.jpg
 description: Mélisande et Nathanaël arrivent à Madagascar pour un volontariat de
   solidarité internationale (VSI)
 ---
@@ -9,4 +9,4 @@ description: Mélisande et Nathanaël arrivent à Madagascar pour un volontariat
 
 M﻿élisande est professeur de français Langue Etrangère (FLE) en France et Nathanaël éducateur sportif au sein d'une association.
 
-L﻿eur présence et compétence vont nous permettre d'avoir une plus-value pour la branche éducative de l'association.
+L﻿eur présence et compétences seront une plus-value pour la branche éducative de l'association.

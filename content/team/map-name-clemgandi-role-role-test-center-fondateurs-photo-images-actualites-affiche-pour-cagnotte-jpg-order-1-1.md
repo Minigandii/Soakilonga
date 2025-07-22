@@ -1,7 +1,7 @@
 ---
-name: ClemGandi
-role: "Role Test "
-center: fondateurs
-photo: /images/actualites/affiche-pour-cagnotte-.jpg
+name: Dada
+role: Responsable agriculture / apiculture
+center: tsarazaza
+photo: /images/actualites/dada-tsarazaza-responsable-potager-apiculture-.jpg
 order: 1
 ---
