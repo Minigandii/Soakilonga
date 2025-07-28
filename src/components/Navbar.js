@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart, ArrowRight, Handshake } from "lucide-react"; // Ajout de Handshake pour l'icône des partenaires
+import { Heart, ArrowRight } from "lucide-react";
 
 const NavLink = ({ to, children }) => (
   <Link
@@ -49,7 +49,7 @@ const Navbar = () => {
               to="/soutenir"
               className="bg-gradient-to-r from-green-600 to-green-500 text-white px-6 py-2 rounded-full 
                          hover:from-green-500 hover:to-green-400 transition-all duration-300 
-                         flex items-center gap-2 group hover:translate-y-[-2px] hover:shadow-lg"
+                         flex items-center gap-2 group hover:-translate-y-0.5 hover:shadow-lg"
             >
               Nous soutenir
               <Heart className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="w-6 h-6 flex items-center justify-center">
               {isOpen ? (
                 <svg
-                  className="w-6 h-6 transition-transform duration-300 transform rotate-180"
+                  className="w-6 h-6 transition-transform duration-300 rotate-180"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -102,50 +102,62 @@ const Navbar = () => {
           <Link
             to="/decouvrir"
             onClick={handleLinkClick}
-            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors group"
           >
-            Nous découvrir
-            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center gap-2">
+              Nous découvrir
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </Link>
           <Link
             to="/actions"
             onClick={handleLinkClick}
-            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors group"
           >
-            Nos actions
-            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center gap-2">
+              Nos actions
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </Link>
           <Link
             to="/centres"
             onClick={handleLinkClick}
-            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors group"
           >
-            Nos Centres
-            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center gap-2">
+              Nos Centres
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </Link>
           <Link
             to="/actualite"
             onClick={handleLinkClick}
-            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors group"
           >
-            Actualités
-            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center gap-2">
+              Actualités
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </Link>
           <Link
             to="/partenaires"
             onClick={handleLinkClick}
-            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors group"
           >
-            Partenaires
-            <Handshake className="w-4 h-4 ml-1" />
+            <div className="flex items-center gap-2">
+              Partenaires
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </Link>
           <Link
             to="/soutenir"
             onClick={handleLinkClick}
-            className="block px-6 py-3 text-green-600 hover:bg-green-50 hover:text-green-800 transition-colors flex items-center gap-2"
+            className="block px-6 py-3 text-green-600 hover:bg-green-50 hover:text-green-800 transition-colors group"
           >
-            Nous soutenir
-            <Heart className="w-4 h-4" />
+            <div className="flex items-center gap-2">
+              Nous soutenir
+              <Heart className="w-4 h-4" />
+            </div>
           </Link>
         </div>
       </div>
