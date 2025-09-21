@@ -55,9 +55,9 @@ const NosActions = () => {
   const images6 = [
     { src: "/images/Femme1.jpg", alt: "Femme1" },
     { src: "/images/Femme2.jpg", alt: "Femme2" },
-    { src: "/images/Femme1.jpg", alt: "Femme3" },
-    { src: "/images/Femme2.jpg", alt: "Femme4" },
-    { src: "/images/Femme1.jpg", alt: "Femme5" },
+    { src: "/images/Femme3.jpg", alt: "Femme3" },
+    { src: "/images/Femme1.jpg", alt: "Femme4" },
+    { src: "/images/Femme2.jpg", alt: "Femme5" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -267,12 +267,11 @@ const NosActions = () => {
               <p className="text-base sm:text-lg text-gray-700">
                 Très lié au domaine sanitaire de nutrition, le sport joue un
                 rôle important dans les actions de Soakilonga. Il permet de
-                renforcer les liens sociaux, de promouvoir l'égalité entre les
-                sexes, et d'apprendre des valeurs comme le respect et la
-                solidarité. Nous mettons un point d'honneur à avoir du matériel
-                sportif de qualité pour une pratique optimale et une découverte
-                de sports méconnus des populations (tennis de table, ultimate,
-                slakline…).
+                renforcer les liens sociaux, de promouvoir l'égalité de genre,
+                et d'apprendre des valeurs comme le respect et la solidarité.
+                Nous mettons un point d'honneur à avoir du matériel sportif de
+                qualité pour une pratique optimale et une découverte de sports
+                méconnus des populations (tennis de table, ultimate, slakline…).
               </p>
               <p className="text-base sm:text-lg text-gray-700">
                 Nous organisons régulièrement des événements sportifs pour les

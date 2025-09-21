@@ -21,9 +21,9 @@ const Centres = () => {
     { src: "/images/Mahitsy1.jpg", alt: "Mahitsy1" },
     { src: "/images/Mahitsy2.jpg", alt: "Mahitsy2" },
     { src: "/images/Mahitsy3.jpg", alt: "Mahitsy3" },
-    { src: "/images/Mahitsy4.jpg", alt: "Mahitsy4" },
-    { src: "/images/Mahitsy1.jpg", alt: "Mahitsy5" },
-    { src: "/images/Mahitsy2.jpg", alt: "Mahitsy6" },
+    { src: "/images/Mahitsy1.jpg", alt: "Mahitsy4" },
+    { src: "/images/Mahitsy2.jpg", alt: "Mahitsy5" },
+    { src: "/images/Mahitsy3.jpg", alt: "Mahitsy6" },
   ];
 
   const images3 = [

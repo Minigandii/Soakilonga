@@ -28,98 +28,84 @@ const NosPartenaires = () => {
   const partenaires = [
     {
       nom: "Wakamoun",
-      description: "Partenaire principal en France - Projets solidaires",
       logo: "/images/partners/wakamoun.jpg",
       url: "https://www.wakamoun.fr",
       categorie: "Associatif",
     },
     {
       nom: "Secours Populaire Français",
-      description: "Solidarité nationale et internationale",
       logo: "/images/partners/secours-populaire.jpg",
       url: "https://www.secourspopulaire.fr",
       categorie: "Associatif",
     },
     {
       nom: "Département de la Réunion",
-      description: "Partenaire institutionnel régional",
       logo: "/images/partners/reunion.jpg",
       url: "https://www.departement974.fr",
       categorie: "Institutionnel",
     },
     {
       nom: "Médecins de l'Océan Indien",
-      description: "Collaboration médicale et sanitaire",
       logo: "/images/partners/moi.jpg",
       url: "https://www.moi-asso.com",
       categorie: "Médical",
     },
     {
       nom: "Mieux Nourrir et Grandir",
-      description: "Expertise en nutrition et développement",
       logo: "/images/partners/mieux-nourrir.jpg",
       url: "https://www.mieuxnourriretgrandir.org/",
       categorie: "Institutionnel",
     },
     {
       nom: "Epigasy",
-      description: "Centre de formation en boulangerie-pâtisserie",
       logo: "/images/partners/epigasy.jpg",
       url: "https://www.epigasy.org/",
       categorie: "Formation professionnelle",
     },
     {
       nom: "Shumei Natural Agriculture",
-      description: "Expertise en agriculture durable",
       logo: "/images/partners/shumei.jpg",
       url: "https://shumeinaturalagriculture.com",
       categorie: "Agriculture",
     },
     {
       nom: "Nehemia",
-      description: "Partenaire pour le développement communautaire",
       logo: "/images/partners/nehemia.jpg",
       url: "https://www.nehemia.org",
       categorie: "Associatif",
     },
     {
       nom: "Fondation EcoFormation",
-      description: "Formation et restauration de la biodiversité",
       logo: "/images/partners/ecoformation.jpg",
       url: "http://ecoformation.org/fr/accueil/",
       categorie: "Environnement",
     },
     {
       nom: "Agri Nature Madagascar",
-      description: "Agriculture et développement rural",
       logo: "/images/partners/agrinature.jpg",
       url: "https://www.facebook.com/p/Agrinature-Madagascar-100009956809257/",
       categorie: "Agriculture",
     },
     {
       nom: "Ville de Mulhouse",
-      description: "Partenariat de coopération décentralisée",
       logo: "/images/partners/mulhouse.jpg",
       url: "https://www.mulhouse.fr",
       categorie: "Institutionnel",
     },
     {
       nom: "Artisans du Monde",
-      description: "Commerce équitable et développement",
       logo: "/images/partners/artisans-du-monde.jpg",
       url: "https://www.artisansdumonde.org",
       categorie: "Commerce équitable",
     },
     {
       nom: "Aviation Sans Frontières",
-      description: "Transport humanitaire et logistique",
       logo: "/images/partners/aviation.jpg",
       url: "https://www.aviation-sans-frontieres.org",
       categorie: "Logistique",
     },
     {
       nom: "Scouts et Guides de France",
-      description: "Éducation et formation des jeunes",
       logo: "/images/partners/scouts.jpg",
       url: "https://www.sgdf.fr",
       categorie: "Éducation",
@@ -209,10 +195,6 @@ const NosPartenaires = () => {
                       <ExternalLink className="w-4 h-4 ml-2 text-green-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                     )}
                   </h3>
-
-                  <p className="text-gray-600 mt-auto text-sm">
-                    {partenaire.description}
-                  </p>
                 </div>
 
                 {/* Lien invisible pour toute la carte */}
