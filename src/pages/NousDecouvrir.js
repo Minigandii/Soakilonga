@@ -326,6 +326,12 @@ const NousDecouvrir = () => {
                 chances et opportunités : les familles aisées comme les plus
                 démunies, les hommes comme les femmes.
               </p>
+
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                En ce sens, Soakilonga contribue activement à la réalisation
+                d’une grande majorité des Objectifs de Développement Durable
+                définis par l’ONU.
+              </p>
             </AnimatedSection>
           </div>
         </div>

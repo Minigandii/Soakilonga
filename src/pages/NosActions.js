@@ -246,6 +246,10 @@ const NosActions = () => {
                 leur indépendance économique. Ces initiatives visent à améliorer
                 le statut des femmes dans la société malgache.
               </p>
+              <p className="text-base sm:text-lg text-gray-700">
+                Nourris et accompagnés, les enfants de la cantine Soakilonga
+                franchissent avec succès leur examen de fin de primaire.
+              </p>
             </AnimatedSection>
           </div>
         </div>
