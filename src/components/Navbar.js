@@ -42,7 +42,7 @@ const Navbar = () => {
             <NavLink to="/actions">Nos actions</NavLink>
             <NavLink to="/centres">Nos Centres</NavLink>
             <NavLink to="/actualite">Actualités</NavLink>
-            <NavLink to="/partenaires">Partenaires</NavLink>
+            {/* <NavLink to="/partenaires">Partenaires</NavLink> */} {/* Temporairement caché */}
 
             {/* Bouton Nous soutenir amélioré */}
             <Link
@@ -139,7 +139,7 @@ const Navbar = () => {
               <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </Link>
-          <Link
+          {/* <Link
             to="/partenaires"
             onClick={handleLinkClick}
             className="block px-6 py-3 text-green-800 hover:bg-green-50 hover:text-green-600 transition-colors group"
@@ -148,7 +148,7 @@ const Navbar = () => {
               Partenaires
               <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-          </Link>
+          </Link> */} {/* Temporairement caché */}
           <Link
             to="/soutenir"
             onClick={handleLinkClick}

@@ -52,15 +52,15 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Contact</h3>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>+261 34 12 345 67</span>
+              <span>+261 38 35 355 18</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
               <a
-                href="mailto:contact@soakilonga.org"
+                href="mailto:soakilonga1@gmail.com"
                 className="hover:text-green-300 transition-colors"
               >
-                contact@soakilonga.org
+                soakilonga1@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-2">
@@ -96,14 +96,14 @@ const Footer = () => {
                   Nos centres
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/partenaires"
                   className="hover:text-green-300 transition-colors"
                 >
                   Nos partenaires
                 </Link>
-              </li>
+              </li> */} {/* Temporairement caché */}
               <li>
                 <Link
                   to="/soutenir"

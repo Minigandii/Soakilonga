@@ -6,7 +6,7 @@ import NousDecouvrir from "./pages/NousDecouvrir";
 import NosActions from "./pages/NosActions";
 import Actualite from "./pages/Actualite";
 import NousSoutenir from "./pages/NousSoutenir";
-import NosPartenaires from "./pages/NosPartenaires";
+// import NosPartenaires from "./pages/NosPartenaires"; // Temporairement caché
 import Contact from "./pages/Contact";
 import Centres from "./pages/Centres";
 import Navbar from "./components/Navbar";
@@ -65,7 +65,8 @@ function AppContent() {
           <Route path="/centres" element={<Centres />} />
           <Route path="/actualite" element={<Actualite />} />
           <Route path="/soutenir" element={<NousSoutenir />} />
-          <Route path="/partenaires" element={<NosPartenaires />} />
+          {/* <Route path="/partenaires" element={<NosPartenaires />} /> */}{" "}
+          {/* Temporairement caché */}
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
