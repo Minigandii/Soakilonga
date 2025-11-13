@@ -52,7 +52,12 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Contact</h3>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>+261 38 35 355 18</span>
+              <a
+                href="tel:+261383535518"
+                className="hover:text-green-300 transition-colors"
+              >
+                +261 38 35 355 18
+              </a>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
