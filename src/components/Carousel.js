@@ -92,10 +92,10 @@ const Carousel = ({ images, autoplayInterval = 3000, className = "" }) => {
         />
       ))}
 
-      {/* Flèches de navigation - Visible au hover sur desktop */}
+      {/* Flèches de navigation - Toujours visible sur mobile, au hover sur desktop */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-green-900 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 md:group-hover:opacity-100 active:opacity-100"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-green-900 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100"
         aria-label="Image précédente"
       >
         <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
@@ -103,7 +103,7 @@ const Carousel = ({ images, autoplayInterval = 3000, className = "" }) => {
 
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-green-900 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 md:group-hover:opacity-100 active:opacity-100"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-green-900 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100"
         aria-label="Image suivante"
       >
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
