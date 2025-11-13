@@ -2,6 +2,12 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 
 // Définition de toutes les images du site
 export const SITE_IMAGES = {
+  // Images critiques à charger en priorité
+  critical: [
+    { src: "/images/LogoSkl.jpg", alt: "Logo Soakilonga" },
+    { src: "/images/Accueil1.jpg", alt: "Accueil 1" },
+    { src: "/images/Accueil2.jpg", alt: "Accueil 2" },
+  ],
   accueil: [
     { src: "/images/Accueil1.jpg", alt: "Accueil 1" },
     { src: "/images/Accueil2.jpg", alt: "Accueil 2" },
@@ -69,14 +75,38 @@ export const ImagesProvider = ({ children }) => {
     [loadedImages]
   );
 
+  // Préchargement des images critiques uniquement
+  const preloadCriticalImages = useCallback(async () => {
+    try {
+      const criticalImages = SITE_IMAGES.critical.map((img) => img.src);
+      await Promise.all(criticalImages.map(preloadImage));
+    } catch (error) {
+      console.error("Erreur lors du chargement des images critiques:", error);
+    }
+  }, [preloadImage]);
+
+  // Préchargement de toutes les images (excluant les critiques déjà chargées)
   const preloadAllImages = useCallback(async () => {
     if (!loading) return; // Éviter les chargements multiples
 
     try {
-      const allImages = Object.values(SITE_IMAGES).flat();
+      const allImages = Object.entries(SITE_IMAGES)
+        .filter(([key]) => key !== "critical") // Exclure les images critiques déjà chargées
+        .flatMap(([_, images]) => images);
+
       const uniqueImages = [...new Set(allImages.map((img) => img.src))];
 
-      await Promise.all(uniqueImages.map(preloadImage));
+      // Charger par batch de 5 images avec délai
+      const batchSize = 5;
+      for (let i = 0; i < uniqueImages.length; i += batchSize) {
+        const batch = uniqueImages.slice(i, i + batchSize);
+        await Promise.all(batch.map(preloadImage));
+
+        // Délai entre chaque batch pour ne pas surcharger
+        if (i + batchSize < uniqueImages.length) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+      }
     } catch (error) {
       console.error("Erreur lors du chargement des images:", error);
     } finally {
@@ -90,6 +120,7 @@ export const ImagesProvider = ({ children }) => {
         images: SITE_IMAGES,
         loading,
         preloadAllImages,
+        preloadCriticalImages,
       }}
     >
       {children}

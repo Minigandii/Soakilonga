@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import LoadingScreen from "./components/LoadingScreen";
 import Accueil from "./pages/Accueil";
 import NousDecouvrir from "./pages/NousDecouvrir";
 import NosActions from "./pages/NosActions";
@@ -9,21 +11,10 @@ import NousSoutenir from "./pages/NousSoutenir";
 // import NosPartenaires from "./pages/NosPartenaires"; // Temporairement caché
 import Contact from "./pages/Contact";
 import Centres from "./pages/Centres";
-import Navbar from "./components/Navbar";
 import { ActualitesProvider, useActualites } from "./context/ActualitesContext";
 import { ImagesProvider, useImages } from "./context/ImagesContext";
 import { TeamProvider } from "./context/TeamContext";
 import "./tailwind.css";
-
-function LoadingScreen() {
-  return (
-    <div className="fixed inset-0 bg-green-900 z-50 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white mb-4"></div>
-      </div>
-    </div>
-  );
-}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,22 +25,42 @@ function ScrollToTop() {
 }
 
 function AppContent() {
-  // Nous n'avons plus besoin d'appeler fetchActualites explicitement,
-  // car il est maintenant appelé automatiquement dans le contexte
   const { loading: actualitesLoading } = useActualites();
-  const { preloadAllImages, loading: imagesLoading } = useImages();
+  const { preloadAllImages, preloadCriticalImages } = useImages();
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
     const initializeApp = async () => {
-      await preloadAllImages();
-      setInitialLoading(false);
+      try {
+        // Étape 1: Charger les images critiques
+        await preloadCriticalImages();
+
+        // Étape 2: Attendre le chargement des actualités
+        await new Promise((resolve) => {
+          const checkActualites = setInterval(() => {
+            if (!actualitesLoading) {
+              clearInterval(checkActualites);
+              resolve();
+            }
+          }, 100);
+        });
+
+        // Étape 3: Charger les autres images en arrière-plan (non-bloquant)
+        preloadAllImages();
+
+        // Petit délai pour une transition fluide
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        setInitialLoading(false);
+      } catch (error) {
+        console.error("Erreur lors de l'initialisation:", error);
+        setInitialLoading(false);
+      }
     };
 
     initializeApp();
-  }, [preloadAllImages]);
+  }, [preloadCriticalImages, preloadAllImages, actualitesLoading]);
 
-  if (initialLoading || imagesLoading || actualitesLoading) {
+  if (initialLoading) {
     return <LoadingScreen />;
   }
 
@@ -65,7 +76,7 @@ function AppContent() {
           <Route path="/centres" element={<Centres />} />
           <Route path="/actualite" element={<Actualite />} />
           <Route path="/soutenir" element={<NousSoutenir />} />
-          {/* <Route path="/partenaires" element={<NosPartenaires />} /> */}{" "}
+          {/* <Route path="/partenaires" element={<NosPartenaires />} /> */}
           {/* Temporairement caché */}
           <Route path="/contact" element={<Contact />} />
         </Routes>
