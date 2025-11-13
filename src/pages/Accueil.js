@@ -13,6 +13,7 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { useActualites } from "../context/ActualitesContext";
 import Footer from "../components/Footer";
+import Carousel from "../components/Carousel";
 
 // Hook personnalisé pour détecter la direction du scroll
 const useScrollDirection = () => {
@@ -158,16 +159,12 @@ const Accueil = () => {
     { src: "/images/Accueil2.jpg", alt: "Madagascar 2" },
     { src: "/images/Accueil3.jpg", alt: "Madagascar 3" },
     { src: "/images/Accueil4.jpg", alt: "Madagascar 4" },
-    { src: "/images/Accueil1.jpg", alt: "Madagascar 5" },
-    { src: "/images/Accueil2.jpg", alt: "Madagascar 6" },
   ];
   const images2 = [
     { src: "/images/NousDecouvrir1.jpg", alt: "NousDecouvrir1" },
     { src: "/images/NousDecouvrir2.jpg", alt: "NousDecouvrir2" },
     { src: "/images/NousDecouvrir3.jpg", alt: "NousDecouvrir3" },
     { src: "/images/NousDecouvrir4.jpg", alt: "NousDecouvrir4" },
-    { src: "/images/NousDecouvrir1.jpg", alt: "NousDecouvrir5" },
-    { src: "/images/NousDecouvrir2.jpg", alt: "NousDecouvrir6" },
   ];
   const images3 = [
     { src: "/images/NosActions1.jpg", alt: "NosActions1" },
@@ -175,7 +172,6 @@ const Accueil = () => {
     { src: "/images/NosActions3.jpg", alt: "NosActions3" },
     { src: "/images/NosActions4.jpg", alt: "NosActions4" },
     { src: "/images/NosActions5.jpg", alt: "NosActions5" },
-    { src: "/images/NosActions1.jpg", alt: "NosActions6" },
   ];
   const images4 = [
     { src: "/images/NosCentres1.jpg", alt: "NosCentres1" },
@@ -272,17 +268,11 @@ const Accueil = () => {
       <section className="py-16 md:py-24 bg-green-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <AnimatedSection className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1">
-              {images2.map((image2, index) => (
-                <img
-                  key={`${image2.src}-${index}`}
-                  src={image2.src}
-                  alt={image2.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection className="order-2 md:order-1">
+              <Carousel
+                images={images2}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
             <AnimatedSection
               direction="right"
@@ -343,20 +333,11 @@ const Accueil = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimatedSection>
-            <AnimatedSection
-              direction="right"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl"
-            >
-              {images3.map((image3, index) => (
-                <img
-                  key={`${image3.src}-${index}`}
-                  src={image3.src}
-                  alt={image3.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection direction="right">
+              <Carousel
+                images={images3}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
           </div>
         </div>
@@ -365,20 +346,11 @@ const Accueil = () => {
       <section className="py-16 md:py-24 bg-green-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <AnimatedSection
-              direction="left"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1"
-            >
-              {images4.map((image4, index) => (
-                <img
-                  key={`${image4.src}-${index}`}
-                  src={image4.src}
-                  alt={image4.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection direction="left" className="order-2 md:order-1">
+              <Carousel
+                images={images4}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
             <AnimatedSection
               direction="right"

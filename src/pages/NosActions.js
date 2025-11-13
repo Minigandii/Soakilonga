@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import Footer from "../components/Footer";
+import Carousel from "../components/Carousel";
 
 const NosActions = () => {
   const images = [
@@ -49,15 +50,12 @@ const NosActions = () => {
     { src: "/images/Agri2.jpg", alt: "Agri2" },
     { src: "/images/Agri3.jpg", alt: "Agri3" },
     { src: "/images/Agri4.jpg", alt: "Agri4" },
-    { src: "/images/Agri1.jpg", alt: "Agri5" },
   ];
 
   const images6 = [
     { src: "/images/Femme1.jpg", alt: "Femme1" },
     { src: "/images/Femme2.jpg", alt: "Femme2" },
     { src: "/images/Femme3.jpg", alt: "Femme3" },
-    { src: "/images/Femme1.jpg", alt: "Femme4" },
-    { src: "/images/Femme2.jpg", alt: "Femme5" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -176,20 +174,11 @@ const NosActions = () => {
                 sensibilisation sanitaire des populations.
               </p>
             </AnimatedSection>
-            <AnimatedSection
-              direction="right"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl"
-            >
-              {images2.map((image2, index) => (
-                <img
-                  key={`${image2.src}-${index}`}
-                  src={image2.src}
-                  alt={image2.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection direction="right">
+              <Carousel
+                images={images2}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
           </div>
         </div>
@@ -201,18 +190,12 @@ const NosActions = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection
               direction="left"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1"
+              className="order-2 md:order-1"
             >
-              {images3.map((image3, index) => (
-                <img
-                  key={`${image3.src}-${index}`}
-                  src={image3.src}
-                  alt={image3.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+              <Carousel
+                images={images3}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
             <AnimatedSection
               direction="right"
@@ -284,20 +267,11 @@ const NosActions = () => {
                 garçons.
               </p>
             </AnimatedSection>
-            <AnimatedSection
-              direction="right"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl"
-            >
-              {images4.map((image4, index) => (
-                <img
-                  key={`${image4.src}-${index}`}
-                  src={image4.src}
-                  alt={image4.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection direction="right">
+              <Carousel
+                images={images4}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
           </div>
         </div>
@@ -309,18 +283,12 @@ const NosActions = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection
               direction="left"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl order-2 md:order-1"
+              className="order-2 md:order-1"
             >
-              {images5.map((image5, index) => (
-                <img
-                  key={`${image5.src}-${index}`}
-                  src={image5.src}
-                  alt={image5.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+              <Carousel
+                images={images5}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
             <AnimatedSection
               direction="right"
@@ -389,20 +357,11 @@ const NosActions = () => {
                 couture, broderie, crochet, vannerie et cuisine équilibrée.
               </p>
             </AnimatedSection>
-            <AnimatedSection
-              direction="right"
-              className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-xl"
-            >
-              {images6.map((image6, index) => (
-                <img
-                  key={`${image6.src}-${index}`}
-                  src={image6.src}
-                  alt={image6.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection direction="right">
+              <Carousel
+                images={images6}
+                className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MapPinned } from "lucide-react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import Footer from "../components/Footer";
+import Carousel from "../components/Carousel";
 
 const Centres = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,9 +22,6 @@ const Centres = () => {
     { src: "/images/Mahitsy1.jpg", alt: "Mahitsy1" },
     { src: "/images/Mahitsy2.jpg", alt: "Mahitsy2" },
     { src: "/images/Mahitsy3.jpg", alt: "Mahitsy3" },
-    { src: "/images/Mahitsy1.jpg", alt: "Mahitsy4" },
-    { src: "/images/Mahitsy2.jpg", alt: "Mahitsy5" },
-    { src: "/images/Mahitsy3.jpg", alt: "Mahitsy6" },
   ];
 
   const images3 = [
@@ -31,17 +29,12 @@ const Centres = () => {
     { src: "/images/Tsarazaza2.jpg", alt: "Tsarazaza2" },
     { src: "/images/Tsarazaza3.jpg", alt: "Tsarazaza3" },
     { src: "/images/Tsarazaza4.jpg", alt: "Tsarazaza4" },
-    { src: "/images/Tsarazaza1.jpg", alt: "Tsarazaza5" },
-    { src: "/images/Tsarazaza2.jpg", alt: "Tsarazaza6" },
   ];
 
   const images4 = [
     { src: "/images/Ihosy1.jpg", alt: "Ihosy1" },
     { src: "/images/Ihosy2.jpg", alt: "Ihosy2" },
     { src: "/images/Ihosy3.jpg", alt: "Ihosy3" },
-    { src: "/images/Ihosy1.jpg", alt: "Ihosy4" },
-    { src: "/images/Ihosy2.jpg", alt: "Ihosy5" },
-    { src: "/images/Ihosy3.jpg", alt: "Ihosy6" },
   ];
 
   useEffect(() => {
@@ -140,18 +133,12 @@ const Centres = () => {
 
             <AnimatedSection
               direction="right"
-              className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl order-1 md:order-2"
+              className="order-1 md:order-2"
             >
-              {images2.map((image2, index) => (
-                <img
-                  key={`${image2.src}-${index}`}
-                  src={image2.src}
-                  alt={image2.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+              <Carousel
+                images={images2}
+                className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
           </div>
         </div>
@@ -163,20 +150,11 @@ const Centres = () => {
 
         <div className="container mx-auto px-4 relative">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <AnimatedSection
-              direction="left"
-              className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
-            >
-              {images3.map((image3, index) => (
-                <img
-                  key={`${image3.src}-${index}`}
-                  src={image3.src}
-                  alt={image3.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+            <AnimatedSection direction="left">
+              <Carousel
+                images={images3}
+                className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
 
             <AnimatedSection
@@ -252,18 +230,12 @@ const Centres = () => {
 
             <AnimatedSection
               direction="right"
-              className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl order-1 md:order-2"
+              className="order-1 md:order-2"
             >
-              {images4.map((image4, index) => (
-                <img
-                  key={`${image4.src}-${index}`}
-                  src={image4.src}
-                  alt={image4.alt}
-                  className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
+              <Carousel
+                images={images4}
+                className="relative h-[300px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
+              />
             </AnimatedSection>
           </div>
         </div>
